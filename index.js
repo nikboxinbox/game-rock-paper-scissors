@@ -66,21 +66,21 @@ const declareWinner = (roomUniqueId) => {
         winner = "d";
     } else if (player1Choice == "Бумага") {
         if (player2Choice == "Ножницы") {
-            winner = "p2";
+            winner = "player2";
         } else {
-            winner = "p1";
+            winner = "player1";
         }
     } else if (player1Choice == "Камень") {
         if (player2Choice == "Бумага") {
-            winner = "p2";
+            winner = "player2";
         } else {
-            winner = "p1";
+            winner = "player1";
         }
     } else if (player1Choice == "Ножницы") {
         if (player2Choice == "Камень") {
-            winner = "p2";
+            winner = "player2";
         } else {
-            winner = "p1";
+            winner = "player1";
         }
     }
     io.sockets.to(roomUniqueId).emit("result", {
