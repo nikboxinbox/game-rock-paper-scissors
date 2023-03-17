@@ -78,6 +78,26 @@ socket.on("player2Choice", (data) => {
     }
 });
 
+socket.on("result", (data) => {
+    let winnerText = "";
+    if (data.winner != "draw") {
+        if (data.winner == "player1" && player1) {
+            winnerText = "Вы выиграли!";
+        } else if (data.winner == "player1") {
+            winnerText = "Вы проиграли.";
+        } else if (data.winner == "player2" && !player1) {
+            winnerText = "Вы выиграли!";
+        } else if (data.winner == "player2") {
+            winnerText = "Вы проиграли.";
+        }
+    } else {
+        winnerText = "Ничья!";
+    }
+    document.getElementById("opponentState").style.display = "none";
+    document.getElementById("opponentButton").style.display = "block";
+    document.getElementById("winnerArea").innerHTML = winnerText;
+});
+
 const createOpponentChoiceButton = (data) => {
     document.getElementById("opponentState").innerHTML = "Противник сделал выбор";
     let opponentButton = document.createElement("button");

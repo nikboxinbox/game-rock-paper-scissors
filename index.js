@@ -63,7 +63,7 @@ const declareWinner = (roomUniqueId) => {
     let player2Choice = rooms[roomUniqueId].player2Choice;
     let winner = null;
     if (player1Choice === player2Choice) {
-        winner = "d";
+        winner = "draw";
     } else if (player1Choice == "Бумага") {
         if (player2Choice == "Ножницы") {
             winner = "player2";
