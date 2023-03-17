@@ -1,7 +1,10 @@
 const socket = io();
 
 let roomUniqueId = null;
+let player1 = false;
+
 const createGame = () => {
+    player1 = true;
     socket.emit("createGame");
 };
 const joinGame = () => {
