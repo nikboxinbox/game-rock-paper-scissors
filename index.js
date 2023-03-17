@@ -38,7 +38,57 @@ io.on("connection", (socket) => {
             socket.emit("playersConnected");
         }
     });
+
+    socket.on("player1Choice", (data) => {
+        let rpsValue = data.rpsValue;
+        rooms[data.roomUniqueId].player1Choice = rpsValue;
+        socket.to(data.roomUniqueId).emit("player1Choice", { rpsValue: data.rpsValue });
+        if (rooms[data.roomUniqueId].player2Choice != null) {
+            declareWinner(data.roomUniqueId);
+        }
+    });
+
+    socket.on("player2Choice", (data) => {
+        let rpsValue = data.rpsValue;
+        rooms[data.roomUniqueId].player2Choice = rpsValue;
+        socket.to(data.roomUniqueId).emit("player2Choice", { rpsValue: data.rpsValue });
+        if (rooms[data.roomUniqueId].player1Choice != null) {
+            declareWinner(data.roomUniqueId);
+        }
+    });
 });
+
+const declareWinner = (roomUniqueId) => {
+    let player1Choice = rooms[roomUniqueId].player1Choice;
+    let player2Choice = rooms[roomUniqueId].player2Choice;
+    let winner = null;
+    if (player1Choice === player2Choice) {
+        winner = "d";
+    } else if (player1Choice == "Бумага") {
+        if (player2Choice == "Ножницы") {
+            winner = "p2";
+        } else {
+            winner = "p1";
+        }
+    } else if (player1Choice == "Камень") {
+        if (player2Choice == "Бумага") {
+            winner = "p2";
+        } else {
+            winner = "p1";
+        }
+    } else if (player1Choice == "Ножницы") {
+        if (player2Choice == "Камень") {
+            winner = "p2";
+        } else {
+            winner = "p1";
+        }
+    }
+    io.sockets.to(roomUniqueId).emit("result", {
+        winner: winner,
+    });
+    rooms[roomUniqueId].player1Choice = null;
+    rooms[roomUniqueId].player2Choice = null;
+};
 
 server.listen(3000, () => {
     console.log("server listening on :3000");

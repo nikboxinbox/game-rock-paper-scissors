@@ -13,7 +13,7 @@ const joinGame = () => {
 };
 
 const sendChoice = (rpsValue) => {
-    const choiceEvent = player1 ? "p1Choice" : "p2Choice";
+    const choiceEvent = player1 ? "player1Choice" : "player2Choice";
     socket.emit(choiceEvent, {
         rpsValue: rpsValue,
         roomUniqueId: roomUniqueId,
@@ -65,3 +65,25 @@ socket.on("playersConnected", () => {
     document.getElementById("waitingArea").style.display = "none";
     document.getElementById("gameArea").style.display = "flex";
 });
+
+socket.on("player1Choice", (data) => {
+    if (!player1) {
+        createOpponentChoiceButton(data);
+    }
+});
+
+socket.on("player2Choice", (data) => {
+    if (player1) {
+        createOpponentChoiceButton(data);
+    }
+});
+
+const createOpponentChoiceButton = (data) => {
+    document.getElementById("opponentState").innerHTML = "Противник сделал выбор";
+    let opponentButton = document.createElement("button");
+    opponentButton.id = "opponentButton";
+    opponentButton.classList.add(data.rpsValue.toString().toLowerCase());
+    opponentButton.style.display = "none";
+    opponentButton.innerText = data.rpsValue;
+    document.getElementById("player2Choice").appendChild(opponentButton);
+};
