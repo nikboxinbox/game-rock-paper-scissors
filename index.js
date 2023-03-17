@@ -28,11 +28,24 @@ io.on("connection", (socket) => {
         socket.join(roomUniqueId);
         socket.emit("newGame", { roomUniqueId: roomUniqueId });
     });
+
+    socket.on("joinGame", (data) => {
+        if (rooms[data.roomUniqueId] != null) {
+            socket.join(data.roomUniqueId);
+            socket.to(data.roomUniqueId).emit("playersConnection", {});
+            socket.emit("playersConnection");
+        }
+    });
 });
+
 
 server.listen(3000, () => {
     console.log("server listening on :3000");
 });
+
+
+
+
 
 const makeid = (length) => {
     let result = "";
