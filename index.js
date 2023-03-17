@@ -6,7 +6,7 @@ const path = require("path");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
-let rooms = {};
+const rooms = {};
 
 app.use(express.static(path.join(__dirname, "client")));
 
@@ -31,10 +31,11 @@ io.on("connection", (socket) => {
     });
 
     socket.on("joinGame", (data) => {
+        console.log(data);
         if (rooms[data.roomUniqueId] != null) {
             socket.join(data.roomUniqueId);
-            socket.to(data.roomUniqueId).emit("playersConnection", {});
-            socket.emit("playersConnection");
+            socket.to(data.roomUniqueId).emit("playersConnected", {});
+            socket.emit("playersConnected");
         }
     });
 });
