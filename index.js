@@ -6,6 +6,7 @@ const path = require("path");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
+let rooms = {};
 
 app.use(express.static(path.join(__dirname, "client")));
 
@@ -38,14 +39,9 @@ io.on("connection", (socket) => {
     });
 });
 
-
 server.listen(3000, () => {
     console.log("server listening on :3000");
 });
-
-
-
-
 
 const makeid = (length) => {
     let result = "";

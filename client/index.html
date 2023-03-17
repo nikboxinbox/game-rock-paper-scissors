@@ -11,11 +11,16 @@
   </head>
   <body>
     <h1>Камень Ножницы Бумага</h1>
-    <div class="initial">
+    <div id="initial">
       <button onclick="createGame()">Создать игру</button>
       <div class="">или</div>
       <input type="text" name="" id="roomUniqueId" />
       <button onclick="joinGame()">Присоединится к игре</button>
+    </div>
+    <div id="gamePlay">
+      <div id="waitingArea"></div>
+      <div id="gameArea" style="display: none"></div>
+      <div id="winnerArea"></div>
     </div>
   </body>
 </html>
