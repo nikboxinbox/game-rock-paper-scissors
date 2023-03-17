@@ -1,4 +1,5 @@
 // Run command: 'npx nodemon index.js'
+// ngrok http 3000
 const express = require("express");
 const app = express();
 const http = require("http");
@@ -42,7 +43,9 @@ io.on("connection", (socket) => {
     socket.on("player1Choice", (data) => {
         let rpsValue = data.rpsValue;
         rooms[data.roomUniqueId].player1Choice = rpsValue;
-        socket.to(data.roomUniqueId).emit("player1Choice", { rpsValue: data.rpsValue });
+        socket
+            .to(data.roomUniqueId)
+            .emit("player1Choice", { rpsValue: data.rpsValue });
         if (rooms[data.roomUniqueId].player2Choice != null) {
             declareWinner(data.roomUniqueId);
         }
@@ -51,7 +54,9 @@ io.on("connection", (socket) => {
     socket.on("player2Choice", (data) => {
         let rpsValue = data.rpsValue;
         rooms[data.roomUniqueId].player2Choice = rpsValue;
-        socket.to(data.roomUniqueId).emit("player2Choice", { rpsValue: data.rpsValue });
+        socket
+            .to(data.roomUniqueId)
+            .emit("player2Choice", { rpsValue: data.rpsValue });
         if (rooms[data.roomUniqueId].player1Choice != null) {
             declareWinner(data.roomUniqueId);
         }

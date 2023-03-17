@@ -20,7 +20,7 @@
     <div id="gamePlay">
       <div id="waitingArea"></div>
       <div id="gameArea" style="display: none">
-        <div class="col-md-6">
+        <div>
           Вы:
           <div id="player1Choice">
             <button class="rock" onclick="sendChoice('Камень')">Камень</button>
@@ -30,13 +30,15 @@
             <button class="paper" onclick="sendChoice('Бумага')">Бумага</button>
           </div>
         </div>
-        <div class="col-md-6">
+        <br />
+        <div>
           Противник:
           <div id="player2Choice">
             <p id="opponentState">Ждём противника</p>
           </div>
         </div>
       </div>
+      <hr />
       <div id="winnerArea"></div>
     </div>
   </body>

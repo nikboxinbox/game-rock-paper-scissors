@@ -63,7 +63,7 @@ socket.on("newGame", (data) => {
 socket.on("playersConnected", () => {
     document.getElementById("initial").style.display = "none";
     document.getElementById("waitingArea").style.display = "none";
-    document.getElementById("gameArea").style.display = "flex";
+    document.getElementById("gameArea").style.display = "block";
 });
 
 socket.on("player1Choice", (data) => {
