@@ -1,4 +1,5 @@
 const socket = io();
+// Или с указанием порта сервера(const socket = io.connect('http://....'))
 
 let roomUniqueId = null;
 let player1 = false;
@@ -35,10 +36,10 @@ socket.on("newGame", (data) => {
     copyButton.innerText = "Копировать код";
     copyButton.addEventListener("click", () => {
         navigator.clipboard.writeText(roomUniqueId).then(
-            function () {
+            () => {
                 console.log("Async: Copying to clipboard was successful!");
             },
-            function (err) {
+            (err) => {
                 console.error("Async: Could not copy text: ", err);
             }
         );
@@ -46,7 +47,7 @@ socket.on("newGame", (data) => {
 
     document.getElementById(
         "waitingArea"
-    ).innerHTML = `Ждём соперника. Передайте ему код для присоединения:  ${roomUniqueId}`;
+    ).innerHTML = `Ожидаем соперника. Передайте ему код для присоединения:  ${roomUniqueId}`;
     copyButton.addEventListener("click", () => {
         navigator.clipboard.writeText(roomUniqueId).then(
             () => {

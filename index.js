@@ -96,7 +96,7 @@ const declareWinner = (roomUniqueId) => {
 };
 
 server.listen(3000, () => {
-    console.log("server listening on :3000");
+    console.log("server listening on http://localhost:3000/");
 });
 
 const makeid = (length) => {
