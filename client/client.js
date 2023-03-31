@@ -1,16 +1,23 @@
 const socket = io();
 // Или с указанием порта сервера(const socket = io.connect('http://....'))
-
 let roomUniqueId = null;
 let player1 = false;
+const joinGame = (code) => {
+    roomUniqueId = code ? code : document.getElementById("roomUniqueId").value;
+    socket.emit("joinGame", { roomUniqueId: roomUniqueId });
+};
+
+const codeFromLink =
+    document.location.pathname.length > 1
+        ? document.location.pathname.slice(1)
+        : null;
+if (codeFromLink) {
+    joinGame(codeFromLink);
+}
 
 const createGame = () => {
     player1 = true;
     socket.emit("createGame");
-};
-const joinGame = () => {
-    roomUniqueId = document.getElementById("roomUniqueId").value;
-    socket.emit("joinGame", { roomUniqueId: roomUniqueId });
 };
 
 const sendChoice = (rpsValue) => {
@@ -29,7 +36,6 @@ const sendChoice = (rpsValue) => {
 
 socket.on("newGame", (data) => {
     roomUniqueId = data.roomUniqueId;
-
     document.getElementById("initial").style.display = "none";
     document.getElementById("gamePlay").style.display = "block";
     const copyCodeButton = document.createElement("button");
