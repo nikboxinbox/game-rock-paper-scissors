@@ -19,8 +19,14 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/client/index.html");
 });
 
+app.get("/:code", (req, res) => {
+    const { code } = req.params;
+    // console.log(code);
+    res.sendFile(__dirname + "/client/index.html");
+});
+
 io.on("connection", (socket) => {
-    console.log("a user connected");
+    console.log("user connected");
     socket.on("disconnect", () => {
         console.log("user disconnected");
     });
