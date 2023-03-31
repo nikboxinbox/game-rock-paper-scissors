@@ -38,10 +38,10 @@ socket.on("newGame", (data) => {
     copyCodeButton.addEventListener("click", () => {
         navigator.clipboard.writeText(roomUniqueId).then(
             () => {
-                console.log("Async: Copying to clipboard was successful!");
+                console.log("Copying to code was successful!");
             },
             (err) => {
-                console.error("Async: Could not copy text: ", err);
+                console.error("Could not copy code: ", err);
             }
         );
     });
@@ -52,10 +52,10 @@ socket.on("newGame", (data) => {
     copyLinkButton.addEventListener("click", () => {
         navigator.clipboard.writeText(joinLink).then(
             () => {
-                console.log("Async: Copying to clipboard was successful!");
+                console.log("Copying to joinLink was successful!");
             },
             (err) => {
-                console.error("Async: Could not copy text: ", err);
+                console.error(" Could not copy joinLink: ", err);
             }
         );
     });

@@ -19,10 +19,14 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/client/index.html");
 });
 
-app.get("/:code", (req, res) => {
-    const { code } = req.params;
-    // console.log(code);
-    res.sendFile(__dirname + "/client/index.html");
+app.get("/:joinCode", (req, res) => {
+    const { joinCode } = req.params;
+    console.log(rooms);
+    if (rooms[joinCode]) {
+        res.sendFile(__dirname + "/client/index.html");
+    } else {
+        res.status(404).send("<h1>Игры не найдено</h1>");
+    }
 });
 
 io.on("connection", (socket) => {
