@@ -10,11 +10,14 @@
     <div class="rps-wrapper">
       <ul id="events"></ul>
       <div class="button-wrapper">
-        <input type="text" id="chat" />
+        <form id="chat-form">
+          <input type="text" id="chat" />
+          <button id="say">Скажи</button>
+        </form>
+
         <button id="rock">Камень</button>
         <button id="scissors">Ножницы</button>
         <button id="paper">Бумага</button>
-        <button id="sae">Скажи</button>
       </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>

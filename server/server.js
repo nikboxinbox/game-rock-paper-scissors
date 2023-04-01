@@ -1,6 +1,7 @@
 const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
+const { text } = require("express");
 
 const app = express();
 const clientPath = `${__dirname}/../client`;
@@ -13,6 +14,10 @@ const io = socketio(server);
 io.on("connection", (socket) => {
     console.log("Socket new connected");
     socket.emit("message", "Привет, Ты подсоединён!");
+
+    socket.on("message", (text) => {
+        io.emit("message", text);
+    });
 });
 
 server.on("error", (err) => {
