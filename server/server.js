@@ -11,7 +11,8 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 io.on("connection", (socket) => {
-    socket.emit("message", "Hi ASS!");
+    console.log("Socket new connected");
+    socket.emit("message", "Привет, Ты подсоединён!");
 });
 
 server.on("error", (err) => {

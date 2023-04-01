@@ -10,3 +10,6 @@ const writeEvent = (text) => {
 };
 
 writeEvent("Добро пожаловать в игру");
+
+const sock = io();
+sock.on("message", writeEvent);
