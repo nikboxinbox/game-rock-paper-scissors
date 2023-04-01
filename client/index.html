@@ -5,19 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Камень Ножницы Бумага</title>
+    <link rel="stylesheet" href="src/styles/main.css" />
   </head>
   <body>
     <div class="rps-wrapper">
       <ul id="events"></ul>
-      <div class="button-wrapper">
-        <form id="chat-form">
-          <input type="text" id="chat" />
-          <button id="send">Отправить</button>
-        </form>
+      <div class="controls">
+        <div class="chat-form">
+          <form id="chat-form">
+            <input id="chat" autocomplete="off" title="chat" />
+            <button id="send">Написать</button>
+          </form>
+        </div>
 
-        <button id="rock">Камень</button>
-        <button id="scissors">Ножницы</button>
-        <button id="paper">Бумага</button>
+        <div class="button-wrapper">
+          <button id="rock">✊</button>
+          <button id="scissors">&#9996;</button>
+          <button id="paper">✋</button>
+        </div>
       </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
