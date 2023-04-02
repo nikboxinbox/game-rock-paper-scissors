@@ -1,36 +1,58 @@
 body {
-  font-family: "Roboto";
+  font-family: monospace;
   margin: 0;
   padding: 0;
 }
 
-input {
-  outline: none;
-  font-size: 18px;
-  padding: 0 5px;
+.chat-form {
+  display: flex;
+  justify-content: space-between;
 }
 
-button {
+input {
+  outline: none;
+  margin: 4px;
+  font-size: 18px;
+  padding: 2px 5px;
+  min-width: 260px;
+}
+
+.play_btn {
   text-transform: uppercase;
-  font-size: 22px;
-  padding: 1px 18px;
+  font-size: 26px;
+  padding: 5px;
   color: white;
   line-height: 25px;
-  background-color: #1a991e;
+  /* background-color: #1a991e; */
   border: none;
   border-radius: 2px;
   cursor: pointer;
-  box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
+  box-shadow: #87909ccf 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
   transition: all 150ms ease-in;
   outline: none;
 }
 
-button:hover {
-  background-color: #dd6d5c;
+.play_btn:hover {
+  background-color: #e672cb;
 }
 
-#send {
-  font-size: 14px;
+.send_btn {
+  text-transform: uppercase;
+  /* font-size: 14 px; */
+  padding: 1px 18px;
+  color: white;
+  line-height: 25px;
+  background-color: #5ec8d0;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  box-shadow: #e18ececf 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
+  transition: all 150ms ease-in;
+  outline: none;
+}
+
+.send_btn:hover {
+  background-color: #e672cb;
 }
 
 .rps-wrapper {
@@ -45,6 +67,7 @@ button:hover {
 }
 
 #events {
+  font-size: 18px;
   flex-grow: 1;
   list-style: none;
   margin: 0;
@@ -54,7 +77,7 @@ button:hover {
 }
 
 #events li {
-  padding: 10px 10px 10px 10px;
+  padding: 5px 10px 5px 10px;
 }
 
 .chat-wrapper {
@@ -66,7 +89,6 @@ button:hover {
 }
 
 .chat-wrapper form input {
-  font-size: 1rem;
   margin: 0 10px 0 0;
   padding: 0 5px;
   flex-grow: 1;
