@@ -2,9 +2,9 @@ class RpsGame {
   constructor(p1, p2) {
     // p1 & p2 - sockets by players
     this._players = [p1, p2];
-    this._choice = [null, null];
+    this._choices = [null, null];
 
-    this._sendMessageToPlayers("Камень Ножницы Бумага. Начали !");
+    this._sendToPlayers("Камень Ножницы Бумага. Начали !");
 
     this._players.forEach((player, idx) => {
       player.on("choice", (choice) => {
@@ -16,11 +16,11 @@ class RpsGame {
     // );
   }
 
-  _sendMessageToPlayer(playerIndex, msg) {
+  _sendToPlayer(playerIndex, msg) {
     this._players[playerIndex].emit("message", msg);
   }
 
-  _sendMessageToPlayers(msg) {
+  _sendToPlayers(msg) {
     this._players.forEach((player) => {
       player.emit("message", msg);
     });
@@ -28,7 +28,7 @@ class RpsGame {
 
   _onChoice(playerIndex, choice) {
     this._choices[playerIndex] = choice;
-    this._sendToPlayer(playerIndex, `Вы выбрали ${turn}`);
+    this._sendToPlayer(playerIndex, `Вы выбрали ${choice}`);
 
     this._checkGameOver();
   }
@@ -37,9 +37,9 @@ class RpsGame {
     const choices = this._choices;
 
     if (choices[0] && choices[1]) {
-      this._sendMessageToPlayers("Игра окончена" + choices.join(" : "));
+      this._sendToPlayers("Игра окончена" + choices.join(" : "));
       this._choices = [null, null];
-      this._sendMessageToPlayers("Следующий раунд!");
+      this._sendToPlayers("Следующий раунд!");
     }
   }
 }
