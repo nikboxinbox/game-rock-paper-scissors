@@ -15,7 +15,7 @@ class RpsGame {
     //   s.emit("message", "Камень Ножницы Бумага Начали !")
     // );
   }
-
+  // FIXME:Порядок приветственных сообщений !
   _sendToPlayer(playerIndex, msg) {
     this._players[playerIndex].emit("message", msg);
   }
