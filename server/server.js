@@ -1,13 +1,17 @@
 const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
-// const { text } = require("express");
+
 const RpsGame = require("./rpsGame");
 
 const app = express();
+
 const clientPath = `${__dirname}/../client`;
+
 app.use(express.static(clientPath));
+
 const server = http.createServer(app);
+
 const io = socketio(server);
 
 let waitingPlayer = null;
@@ -21,7 +25,7 @@ io.on("connection", (socket) => {
     waitingPlayer.emit("message", "Ожидаем противника.");
   }
   console.log("Socket new connected");
-  socket.emit("message", "Привет, Ты подсоединён!");
+  // socket.emit("message", "Привет, Ты подсоединён!");
 
   socket.on("message", (text) => {
     io.emit("message", text);

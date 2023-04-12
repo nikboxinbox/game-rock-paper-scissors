@@ -4,18 +4,15 @@ class RpsGame {
     this._players = [p1, p2];
     this._choices = [null, null];
 
-    this._sendToPlayers("Камень Ножницы Бумага. Начали !");
+    this._sendToPlayers("Камень Ножницы Бумага. Выбирай !");
 
     this._players.forEach((player, idx) => {
       player.on("choice", (choice) => {
         this._onChoice(idx, choice);
       });
     });
-    // [(p1, p2)].forEach((s) =>
-    //   s.emit("message", "Камень Ножницы Бумага Начали !")
-    // );
   }
-  // FIXME:Порядок приветственных сообщений !
+
   _sendToPlayer(playerIndex, msg) {
     this._players[playerIndex].emit("message", msg);
   }
@@ -29,7 +26,6 @@ class RpsGame {
   _onChoice(playerIndex, choice) {
     this._choices[playerIndex] = choice;
     this._sendToPlayer(playerIndex, `Вы выбрали ${choice}`);
-
     this._checkGameOver();
   }
 
@@ -37,10 +33,11 @@ class RpsGame {
     const choices = this._choices;
 
     if (choices[0] && choices[1]) {
-      this._sendToPlayers("Игра окончена" + choices.join(" : "));
+      this._sendToPlayers("Игра окончена " + choices.join(" : "));
       this._choices = [null, null];
       this._sendToPlayers("Следующий раунд!");
     }
   }
 }
+
 module.exports = RpsGame;
