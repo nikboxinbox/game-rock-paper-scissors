@@ -4,6 +4,14 @@ class RpsGame {
     this._players = [p1, p2];
     this._choices = [null, null];
 
+    this._ratio = { paper: "rock", rock: "scissors", scissors: "paper" };
+
+    this._rusDictionary = {
+      rock: "КАМЕНЬ",
+      scissors: "НОЖНИЦЫ",
+      paper: "БУМАГА",
+    };
+
     this._sendToPlayers("Камень Ножницы Бумага. Выбирай !");
 
     this._players.forEach((player, idx) => {
@@ -25,18 +33,41 @@ class RpsGame {
 
   _onChoice(playerIndex, choice) {
     this._choices[playerIndex] = choice;
-    this._sendToPlayer(playerIndex, `Вы выбрали ${choice}`);
+    this._sendToPlayer(
+      playerIndex,
+      `Вы выбрали ${this._rusDictionary[choice]}`
+    );
     this._checkGameOver();
   }
 
   _checkGameOver() {
-    const choices = this._choices;
+    if (this._choices[0] && this._choices[1]) {
+      this._sendToPlayers(
+        `Игра окончена  ${this._rusDictionary[this._choices[0]]} :  ${
+          this._rusDictionary[this._choices[1]]
+        }`
+      );
 
-    if (choices[0] && choices[1]) {
-      this._sendToPlayers("Игра окончена " + choices.join(" : "));
+      this._getGameResul();
+
       this._choices = [null, null];
+
       this._sendToPlayers("Следующий раунд!");
     }
+  }
+
+  _getGameResul() {
+    if (this._choices[0] == this._choices[1]) {
+      this._sendToPlayers("Ничья !");
+    } else {
+      this._ratio[this._choices[0]] == this._choices[1]
+        ? this._sendResultMessage(this._players[0], this._players[1])
+        : this._sendResultMessage(this._players[1], this._players[0]);
+    }
+  }
+  _sendResultMessage(winner, looser) {
+    winner.emit("message", "Вы выиграли!");
+    looser.emit("message", "Вы проиграли!");
   }
 }
 

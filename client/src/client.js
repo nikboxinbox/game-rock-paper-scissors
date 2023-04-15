@@ -1,9 +1,3 @@
-const dictionary = {
-  rock: "КАМЕНЬ",
-  scissors: "НОЖНИЦЫ",
-  paper: "БУМАГА",
-};
-
 const writeEvent = (text) => {
   // <ul> element
   const listEl = document.querySelector("#events");
@@ -28,7 +22,7 @@ const addButtonListeners = () => {
   ["rock", "scissors", "paper"].forEach((id) => {
     const button = document.getElementById(id);
     button.addEventListener("click", () => {
-      sock.emit("choice", dictionary[id]);
+      sock.emit("choice", id);
     });
   });
 };

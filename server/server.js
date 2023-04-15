@@ -14,6 +14,8 @@ const server = http.createServer(app);
 
 const io = socketio(server);
 
+// const rooms = {};
+
 let waitingPlayer = null;
 
 io.on("connection", (socket) => {
