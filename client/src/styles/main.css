@@ -5,17 +5,23 @@ body {
   height: 500px;
 }
 
-.chat-form {
+/* .chat-form {
   display: flex;
   justify-content: space-between;
+} */
+
+#chat-form {
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 input {
+  flex: auto;
   outline: none;
   margin: 4px;
   font-size: 18px;
   padding: 2px 5px;
-  min-width: 260px;
+  /* min-width: 260px; */
 }
 
 .play_btn {
